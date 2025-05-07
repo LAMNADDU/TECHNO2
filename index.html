@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gspot App Development</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ffd535",
+              secondary: "#000000",
+              tertiary: "#0b0a0d",
+            },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+            fontFamily: {
+              sans: ["Montserrat"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Inter', sans-serif;
+      }
+      .hero-section {
+      position: relative;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      }
+      .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      }
+      .nav-link {
+      position: relative;
+      }
+      .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #ffd535;
+      transition: width 0.3s ease;
+      }
+      .container {
+  width: 100%;
+  max-width: 400px; /* Optional: for large screens */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+      .nav-link:hover::after {
+      width: 100%;
+      }
+      .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0;
+      background: linear-gradient(135deg, #ffd535, #000000);
+      animation: float 15s infinite ease-in-out;
+      }
+      .shape-1 {
+      width: 200px;
+      height: 200px;
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+      }
+      .shape-2 {
+      width: 150px;
+      height: 150px;
+      bottom: 10%;
+      right: 10%;
+      animation-delay: 2s;
+      }
+      .shape-3 {
+      width: 100px;
+      height: 100px;
+      top: 60%;
+      left: 15%;
+      animation-delay: 4s;
+      }
+      @keyframes float {
+      0%, 100% {
+      transform: translateY(0) rotate(0deg);
+      }
+      25% {
+      transform: translateY(-15px) rotate(5deg);
+      }
+      50% {
+      transform: translateY(0) rotate(0deg);
+      }
+      75% {
+      transform: translateY(15px) rotate(-5deg);
+      }
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+      }
+      @media (max-width: 600px) {
+  .container {
+    padding: 10px;
+    max-width: 100%;
+  }
+  img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+}
+      .hero-section {
+  background-image: url('assets/THE GSPOT wall paper.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  }
+  gradient-overlay {
+      background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.5) 80%, rgba(255,255,255,0) 100%);
+      }
+    
+    </style>
+  </head>
+  <body class="min-h-screen bg-white text-gray-800">
+    <!-- Navigation -->
+    <script>
+      document.querySelector('.md:hidden').addEventListener('click', () => {
+        const menu = document.querySelector('.hidden.md\\:flex');
+        menu.classList.toggle('hidden');
+      });
+    </script>
+    <nav
+      class="fixed top-0 left-0 w-full z-40 bg-white bg-opacity-95 backdrop-blur-sm shadow-sm"
+    >
+      <div
+        class="container mx-auto px-6 py-4 flex items-center justify-between"
+      >
+      <a href="#hero">
+        
+        <img src="assets/THE GSPOT LOGO black.png" alt="Gspot Logo" class="h-12" />
+
+        
+      </a>
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="#problem"
+            class="nav-link font-medium text-gray-800 hover:text-primary transition-colors"
+            >Problem</a
+          >
+          <a
+            href="#team"
+            class="nav-link font-medium text-gray-800 hover:text-primary transition-colors"
+            >Team</a
+          >
+          <a
+            href="#how-it-works"
+            class="nav-link font-medium text-gray-800 hover:text-primary transition-colors"
+            >How it works</a
+          >
+          <a
+            href="#solution"
+            class="nav-link font-medium text-gray-800 hover:text-primary transition-colors"
+            >Features</a
+          >
+          <button
+            class="ml-4 bg-primary hover:bg-primary/90 text-black font-medium py-2 px-6 !rounded-button transition-all whitespace-nowrap"
+          >
+          <a
+          href="https://www.figma.com/proto/zKD4GYwdJmOdiaXCZUL8RE/G-SPOT-PROTOTYPE?node-id=7-3542&t=szSJBcDmTk8DYPPV-1&starting-point-node-id=7%3A3542"
+          class="nav-link font-medium text-gray-800 hover:text-primary transition-colors"
+          >Get Started</a>
+          </button>
+        </div>
+        <button class="md:hidden w-10 h-10 flex items-center justify-center">
+          <i class="ri-menu-line text-gray-800 ri-lg"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->  
+    <section id="hero" class="hero-section min-h-screen pt-20 flex items-center">
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"> 
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 mb-10 md:mb-0">
+            <h1 class="text-4xl md:text-5xl font-bold !text-white mb-6">
+              Why Is Parking Still This Difficult?
+            </h1>
+            <p class="text-lg !text-white mb-8">
+              Discover the smart parking solution that's changing how cities
+              move. Save time, reduce stress, and never circle for a spot again.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+            >
+            <a
+            href="https://www.figma.com/proto/zKD4GYwdJmOdiaXCZUL8RE/G-SPOT-PROTOTYPE?node-id=7-3542&t=cBJJevkzbQu4FEcU-1&starting-point-node-id=7%3A3542"
+            class="nav-link font-medium text-gray-800 hover:text-primary transition-colors"
+            ><button
+            class="bg-primary text-black px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-opacity-90 transition-all"
+          >
+            Try App
+          </button></a
+          >
+          <a href="assets/HATDOG Business Plan.pdf" download="HATDOG Business Plan.pdf"
+          class="border border-gray-300 bg-white text-gray-700 px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-gray-50 transition-all inline-block">
+         Download Documentation
+           </a>
+            
+
+            </div>
+          </div>
+          <div class="md:w-1/2"></div>
+        </div>
+      </div>
+    
+          <div class="hidden md:block"></div>
+        </div>
+      </div>
+      <!-- Floating shapes for visual interest -->
+      <div class="floating-shape shape-1"></div>
+      <div class="floating-shape shape-2"></div>
+      <div class="floating-shape shape-3"></div>
+    </section>
+    <!-- Problem Section -->
+    <section id="problem" class="py-16 bg-primary">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900">The Parking Problem</h2>
+          <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+            Urban parking creates frustration, wastes time, and contributes to
+            congestion and pollution.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div
+            class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+          >
+            <div
+              class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4"
+            >
+              <i class="ri-road-map-line ri-lg text-secondary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              Traffic Congestion
+            </h3>
+            <p class="text-gray-600">
+              30% of urban traffic is caused by drivers searching for parking
+              spaces.
+            </p>
+          </div>
+          <div
+            class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+          >
+            <div
+              class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4"
+            >
+              <i class="ri-eye-off-line ri-lg text-secondary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              No Visibility
+            </h3>
+            <p class="text-gray-600">
+              No real-time visibility of available spots leads to wasted time
+              and frustration.
+            </p>
+          </div>
+          <div
+            class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+          >
+            <div
+              class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4"
+            >
+              <i class="ri-ancient-gate-line ri-lg text-secondary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              Outdated Systems
+            </h3>
+            <p class="text-gray-600">
+              Outdated or manual parking systems create inefficiency and errors.
+            </p>
+          </div>
+          <div
+            class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+          >
+            <div
+              class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4"
+            >
+              <i class="ri-bank-card-line ri-lg text-secondary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              Payment Hassle
+            </h3>
+            <p class="text-gray-600">
+              No seamless way to reserve and pay for parking spaces in advance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <section id="prototype" class="py-16 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-white">Our Prototype</h2>
+            <p class="mt-4 text-lg text-white max-w-3xl mx-auto">
+              Check out our prototype to see how G-SPOT works in action.
+            </p>
+          </div>
+          <div class="flex justify-center">
+          </div>
+        </div>
+    </section>
+    <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="1898" height="1080" src="https://embed.figma.com/proto/zKD4GYwdJmOdiaXCZUL8RE/G-SPOT-PROTOTYPE?node-id=198-2961&starting-point-node-id=104%3A3667&embed-host=share" allowfullscreen></iframe>
+   <!-- Solution Section -->
+   <section id="solution" class="py-16 bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">
+          The Smart Way to Park
+        </h2>
+      </div>
+      <div class="flex flex-col lg:flex-row items-center gap-12">
+        <div class="lg:w-1/2">
+          <img src="assets/banner-img.png" alt="Banner" class="w-full h-auto rounded-lg" />
+        </div>
+        <div class="lg:w-1/2">
+          <p class="text-lg text-white mb-8">
+            G-SPOT uses real-time LIDAR sensor technology to detect available
+            spaces, integrates digital payments, and optimizes space usage
+            with cloud-based analytics — all in one smooth experience.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <div
+                class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 mt-1"
+              >
+                <i class="ri-sensor-line ri-lg text-primary"></i>
+              </div>
+              <div>
+                <h3 class="font-black text-white">
+                  Advanced Sensor Network
+                </h3>
+                <p class="text-white">
+                  Our LIDAR sensors provide 99.8% accuracy in detecting
+                  available parking spaces.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 mt-1"
+              >
+                <i class="ri-secure-payment-line ri-lg text-primary"></i>
+              </div>
+              <div>
+                <h3 class="font-black text-white">
+                  Seamless Payment System
+                </h3>
+                <p class="text-white">
+                  Pay for parking with a tap using multiple payment methods.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 mt-1"
+              >
+                <i class="ri-cloud-line ri-lg text-primary"></i>
+              </div>
+              <div>
+                <h3 class="font-black text-white">
+                  Cloud-Based Analytics
+                </h3>
+                <p class="text-white">
+                  Real-time data processing to optimize parking space
+                  utilization.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Proposition Section -->
+  <section id="features" class="py-16 bg-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900">
+          What Makes G-SPOT Different?
+        </h2>
+        <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+          Our unique approach to parking combines cutting-edge technology with
+          user-friendly design.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div class="text-4xl mb-4">📍</div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Live Availability
+          </h3>
+          <p class="text-gray-600">
+            Real-time, sensor-based accuracy that updates every 5 seconds.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div class="text-4xl mb-4">💸</div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Easy Payments
+          </h3>
+          <p class="text-gray-600">
+            Cashless and seamless transactions with multiple payment options.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div class="text-4xl mb-4">📊</div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Analytics-Powered
+          </h3>
+          <p class="text-gray-600">
+            Smarter decisions for both drivers and parking operators.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div class="text-4xl mb-4">🌎</div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Scalable</h3>
+          <p class="text-gray-600">
+            Expandable city-wide, mall-wide, or nationwide with minimal
+            infrastructure.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- Target Audience Section -->
+   <section class="py-16 bg-tertiary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-primary">Who Is It For?</h2>
+        <p class="mt-4 text-lg text-white max-w-3xl mx-auto">
+          G-SPOT serves a wide range of users with different parking needs.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div class="text-4xl mb-4">🚗</div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">
+            Daily Car Commuters
+          </h3>
+          <p class="text-gray-600 text-sm">
+            Save time on your daily commute with guaranteed parking.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div class="text-4xl mb-4">🛍️</div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">
+            Mall-Goers & Shoppers
+          </h3>
+          <p class="text-gray-600 text-sm">
+            Find the closest spot to your favorite stores instantly.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div class="text-4xl mb-4">🚚</div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">
+            Fleet & Logistics Operators
+          </h3>
+          <p class="text-gray-600 text-sm">
+            Manage multiple vehicles with our enterprise solutions.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div class="text-4xl mb-4">📱</div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">
+            Tech-Savvy Drivers
+          </h3>
+          <p class="text-gray-600 text-sm">
+            Enjoy the latest in parking technology and convenience.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div class="text-4xl mb-4">🎫</div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">
+            Event Attendees
+          </h3>
+          <p class="text-gray-600 text-sm">
+            Pre-book parking for concerts, sports games, and more.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="py-16 bg-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900">How G-SPOT Works</h2>
+        <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+          A simple four-step process to transform your parking experience.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="relative">
+          <div
+            class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all h-full"
+          >
+            <div
+              class="w-12 h-12 bg-primary text-secondary rounded-full flex items-center justify-center mb-4 font-bold"
+            >
+              1
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">Search</h3>
+            <p class="text-gray-600">
+              Open the app and check live spot availability in your desired
+              location.
+            </p>
+          </div>
+          <div
+            class="hidden lg:block absolute top-1/2 right-0 w-1/2 h-0.5 bg-gray-200 transform translate-x-1/2"
+          ></div>
+        </div>
+        <div class="relative">
+          <div
+            class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all h-full"
+          >
+            <div
+              class="w-12 h-12 bg-primary text-secondary rounded-full flex items-center justify-center mb-4 font-bold"
+            >
+              2
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">Reserve</h3>
+            <p class="text-gray-600">
+              Secure your parking slot instantly with just a tap on your
+              screen.
+            </p>
+          </div>
+          <div
+            class="hidden lg:block absolute top-1/2 right-0 w-1/2 h-0.5 bg-gray-200 transform translate-x-1/2"
+          ></div>
+        </div>
+        <div class="relative">
+          <div
+            class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all h-full"
+          >
+            <div
+              class="w-12 h-12 bg-primary text-secondary rounded-full flex items-center justify-center mb-4 font-bold"
+            >
+              3
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">Pay</h3>
+            <p class="text-gray-600">
+              Go cashless with digital payments using your preferred method.
+            </p>
+          </div>
+          <div
+            class="hidden lg:block absolute top-1/2 right-0 w-1/2 h-0.5 bg-gray-200 transform translate-x-1/2"
+          ></div>
+        </div>
+        <div>
+          <div
+            class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all h-full"
+          >
+            <div
+              class="w-12 h-12 bg-primary text-secondary rounded-full flex items-center justify-center mb-4 font-bold"
+            >
+              4
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              Park & Go
+            </h3>
+            <p class="text-gray-600">
+              Save time and reduce stress with your guaranteed parking spot.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Metrics Section -->
+  <section class="py-16 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-primary">
+          We Measure What Matters
+        </h2>
+        <p class="mt-4 text-lg text-white max-w-3xl mx-auto">
+          Our focus on data helps us continuously improve the G-SPOT
+          experience.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div
+            class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4"
+          >
+            <i class="ri-line-chart-line ri-lg text-primary"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            App Usage & Engagement
+          </h3>
+          <p class="text-gray-600">
+            85% of users open the app at least 3 times per week.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div
+            class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4"
+          >
+            <i class="ri-time-line ri-lg text-primary"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Parking Time Saved
+          </h3>
+          <p class="text-gray-600">
+            Users save an average of 15 minutes per parking session.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div
+            class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4"
+          >
+            <i class="ri-message-2-line ri-lg text-primary"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            User Feedback
+          </h3>
+          <p class="text-gray-600">
+            4.8/5 average rating across all app stores.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div
+            class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4"
+          >
+            <i class="ri-funds-line ri-lg text-primary"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Revenue Growth
+          </h3>
+          <p class="text-gray-600">
+            127% year-over-year increase in transaction volume.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Business & Partner Benefits Section -->
+  <section class="py-16 bg-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900">
+          For Operators, Malls, and City Planners
+        </h2>
+        <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+          G-SPOT provides powerful tools and insights for parking facility
+          managers.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div
+          class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">
+            Operational Benefits
+          </h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <div
+                class="w-6 h-6 flex items-center justify-center bg-primary rounded-full mr-3 mt-0.5"
+              >
+                <i class="ri-check-line text-secondary"></i>
+              </div>
+              <span class="text-gray-700"
+                >Increase space efficiency by up to 30%</span
+              >
+            </li>
+            <li class="flex items-start">
+              <div
+                class="w-6 h-6 flex items-center justify-center bg-primary rounded-full mr-3 mt-0.5"
+              >
+                <i class="ri-check-line text-secondary"></i>
+              </div>
+              <span class="text-gray-700"
+                >Offer premium reserved parking for additional revenue</span
+              >
+            </li>
+            <li class="flex items-start">
+              <div
+                class="w-6 h-6 flex items-center justify-center bg-primary rounded-full mr-3 mt-0.5"
+              >
+                <i class="ri-check-line text-secondary"></i>
+              </div>
+              <span class="text-gray-700"
+                >Reduce staffing costs with automated payment collection</span
+              >
+            </li>
+            <li class="flex items-start">
+              <div
+                class="w-6 h-6 flex items-center justify-center bg-primary rounded-full mr-3 mt-0.5"
+              >
+                <i class="ri-check-line text-secondary"></i>
+              </div>
+              <span class="text-gray-700"
+                >Minimize traffic congestion around parking facilities</span
+              >
+            </li>
+          </ul>
+        </div>
+        <div
+          class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">
+            Data & Analytics
+          </h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <div
+                class="w-6 h-6 flex items-center justify-center bg-primary rounded-full mr-3 mt-0.5"
+              >
+                <i class="ri-check-line text-secondary"></i>
+              </div>
+              <span class="text-gray-700"
+                >Access valuable usage analytics and occupancy patterns</span
+              >
+            </li>
+            <li class="flex items-start">
+              <div
+                class="w-6 h-6 flex items-center justify-center bg-primary rounded-full mr-3 mt-0.5"
+              >
+                <i class="ri-check-line text-secondary"></i>
+              </div>
+              <span class="text-gray-700"
+                >Optimize pricing based on demand and time of day</span
+              >
+            </li>
+            <li class="flex items-start">
+              <div
+                class="w-6 h-6 flex items-center justify-center bg-primary rounded-full mr-3 mt-0.5"
+              >
+                <i class="ri-check-line text-secondary"></i>
+              </div>
+              <span class="text-gray-700"
+                >Gain insights into customer behavior and preferences</span
+              >
+            </li>
+            <li class="flex items-start">
+              <div
+                class="w-6 h-6 flex items-center justify-center bg-primary rounded-full mr-3 mt-0.5"
+              >
+                <i class="ri-check-line text-secondary"></i>
+              </div>
+              <span class="text-gray-700"
+                >Drive more traffic to your business with targeted
+                promotions</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Unfair Advantage Section -->
+  <section class="py-16 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">
+          Why No One Else Can Do What We Do
+        </h2>
+        <p class="mt-4 text-lg text-white max-w-3xl mx-auto">
+          Our proprietary LIDAR-powered system, first-mover digital payment
+          integration, and scalable tech give G-SPOT an unbeatable edge.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div
+            class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto"
+          >
+            <i class="ri-radar-line ri-2x text-primary"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">
+            Proprietary Technology
+          </h3>
+          <p class="text-gray-600 text-center">
+            Our patented LIDAR sensors are 3x more accurate than camera-based
+            systems and work in all weather conditions.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div
+            class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto"
+          >
+            <i class="ri-global-line ri-2x text-primary"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">
+            First-Mover Advantage
+          </h3>
+          <p class="text-gray-600 text-center">
+            With deployments around Davao as a start, we've built partnerships and
+            infrastructure that are difficult to replicate.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all"
+        >
+          <div
+            class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto"
+          >
+            <i class="ri-database-2-line ri-2x text-primary"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">
+            Data Advantage
+          </h3>
+          <p class="text-gray-600 text-center">
+            Our growing dataset of parking patterns and user behavior creates
+            a continuous improvement loop that gets better every day.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Team Section -->
+  <section id="team" class="py-20">
+    <section class="py-20 bg-primary">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Developed By: <img src='assets/THE GSPOT.png' alt="HATDOG Logo" class="inline-block h-20" />
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Mga way tolog kay sigeg buhat aning app na ni. unta ma dato pod mi puhon maayong lawas
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          <!-- Team Member 1 -->
+          <div
+            class="bg-secondary p-8 rounded shadow-lg hover:shadow-xl transition-all text-center group"
+          >
+            <div class="relative mb-6 mx-auto">
+              <div
+              class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-primary/20 group-hover:ring-primary transition-all"
+              >
+                <img
+                  src="assets/lamn.png"
+                  alt="Luke Narca"
+                  style="object-position: bottom top;"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Luke Narca</h3>
+            <p class="text-primary font-medium mb-4">Project Lead</p>
+            <p class="text-white">
+              wa pakoi tulog, kanusa gani present?
+            </p>
+          </div>
+          <!-- Team Member 2 -->
+          <div
+            class="bg-secondary p-8 rounded shadow-lg hover:shadow-xl transition-all text-center group"
+          >
+            <div class="relative mb-6 mx-auto">
+              <div
+                class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-primary/20 group-hover:ring-primary transition-all"
+              >
+                <img
+                  src="assets/ingru.jpg"
+                  alt="Ingrid Silfverberg "
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Ingrid Silfverberg </h3>
+            <p class="text-primary font-medium mb-4">
+              Lead Developer
+            </p>
+            <p class="text-white">
+              Wait. Jwu para asa ni?
+            </p>
+          </div>
+          <!-- Team Member 3 -->
+          <div
+            class="bg-secondary p-8 rounded shadow-lg hover:shadow-xl transition-all text-center group"
+          >
+            <div class="relative mb-6 mx-auto">
+              <div
+                class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-primary/20 group-hover:ring-primary transition-all"
+              >
+                <img
+                  src="assets/randel.jpg"
+                  alt="Randel Francisco"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Randel Francisco</h3>
+            <p class="text-primary font-medium mb-4">Assisting Developer</p>
+            <p class="text-white">
+              yeah kinda tired ngl
+            </p>
+          </div>
+          <!-- Team Member 4 -->
+          <div
+            class="bg-secondary p-8 rounded shadow-lg hover:shadow-xl transition-all text-center group"
+          >
+            <div class="relative mb-6 mx-auto">
+              <div
+                class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-primary/20 group-hover:ring-primary transition-all"
+              >
+                <img
+                  src="assets/cina.png"
+                  alt="China San Pedro "
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">China San Pedro</h3>
+            <p class="text-primary font-medium mb-4">Business Manager</p>
+            <p class="text-white">
+              Ha? ako diay business manager
+            </p>
+          </div>
+          <!-- Team Member 5 -->
+          <div
+            class="bg-secondary p-8 rounded shadow-lg hover:shadow-xl transition-all text-center group"
+          >
+            <div class="relative mb-6 mx-auto">
+              <div
+                class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-primary/20 group-hover:ring-primary transition-all"
+              >
+                <img
+                  src="assets/czar.png"
+                  alt="Czarina Alaine"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Czarina Alaine</h3>
+            <p class="text-primary font-medium mb-4">Secretary</p>
+            <p class="text-white">
+              Samokas traffic sa milan uy
+            </p>
+          </div>
+        </div>
+        <div class="mt-12 text-center"></div>
+      
+    <!-- CTA Section -->
+    <section class="py-20 bg-primary bg-opacity-5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          Pasar naba mi?
+        </h2>
+        <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+          Join thousands of satisfied drivers who have saved time, reduced
+          stress, and simplified parking with G-SPOT. Luh!
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="#hero "
+            class="inline-flex items-center justify-center bg-black text-white px-6 py-3 !rounded-button font-medium whitespace-nowrap hover:bg-gray-900 transition-all"
+          >
+          <img
+          src="assets/THE GSPOT LOGO.png"
+          alt="Logo"
+          class="h-6 w-auto mr-2"
+        />
+            Back to Top
+          </a>
+          
+        </div>
+      </div>
+    </section>
+    
+    <!-- Footer -->
+    <section class="bg-gray-900 text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <div class="text-primary font-['Montserrat'] text-2xl mb-4">
+              G-SPOT
+            </div>
+            <p class="text-gray-400 mb-4">
+              The smart way to find, reserve, and pay for parking in urban
+              areas.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <div class="w-8 h-8 flex items-center justify-center">
+                  <i class="ri-facebook-fill ri-lg"></i>
+                </div>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <div class="w-8 h-8 flex items-center justify-center">
+                  <i class="ri-twitter-x-fill ri-lg"></i>
+                </div>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <div class="w-8 h-8 flex items-center justify-center">
+                  <i class="ri-instagram-fill ri-lg"></i>
+                </div>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <div class="w-8 h-8 flex items-center justify-center">
+                  <i class="ri-linkedin-fill ri-lg"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+          
+        </div>
+        <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+          <p class="text-gray-400 text-sm">
+            © 2025 G-SPOT Technologies, Inc. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </section>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId !== "#") {
+              const targetElement = document.querySelector(targetId);
+              if (targetElement) {
+                window.scrollTo({
+                  top: targetElement.offsetTop - 80,
+                  behavior: "smooth",
+                });
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
